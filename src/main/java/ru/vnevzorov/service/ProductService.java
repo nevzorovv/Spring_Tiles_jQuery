@@ -23,9 +23,6 @@ public class ProductService {
     @Autowired
     ProductRepo productRepo;
 
-    @Autowired
-    PullConnection pullConnection;
-
     Set<String> manufacturers;
     Double minPrice;
     Double maxPrice;
@@ -92,20 +89,21 @@ public class ProductService {
                                          String maxPrice,
                                          List<String> colors) throws NumberFormatException{
 
-        if (minPrice == null) {
-            minPrice = "";
-        }
-        if (maxPrice == null) {
-            maxPrice = "";
-        }
-        //if (!minPrice.equals("") && !maxPrice.equals("")) {
-            if (Double.parseDouble(minPrice) < 0 || Double.parseDouble(maxPrice) < 0) {
+        if (minPrice != null && minPrice.length() > 0) {
+            if (Double.parseDouble(minPrice) < 0) {
                 log.error("Wrong price format - price can not be negative");
                 throw new NumberFormatException();
             }
-        //}
+        }
 
-        try (Connection connection = pullConnection.getPullConnection().getConnection()) {
+        if (maxPrice != null && maxPrice.length() > 0) {
+            if (Double.parseDouble(maxPrice) < 0) {
+                log.error("Wrong price format - price can not be negative");
+                throw new NumberFormatException();
+            }
+        }
+
+        try (Connection connection = PullConnection.getPullConnection().getConnection()) {
             Statement stmt = connection.createStatement();
 
             //Составление адаптивного запроса
