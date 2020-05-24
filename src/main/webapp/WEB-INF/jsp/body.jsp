@@ -1,30 +1,3 @@
-<%--<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">id</th>
-        <th scope="col" class="manufacturer_sort">Manufacturer <div id="sort"><a href="#">Sort</a></div></th>
-        <th scope="col" class="model_sort">Model</th>
-        <th scope="col" class="price_sort">Price</th>
-        <th scope="col" class="color_sort">Color</th>
-    </tr>
-    </thead>
-    <c:forEach items="${filteredProducts}" var="product">
-        <tbody>
-        <tr>
-            <th scope="row">${product.id}</th>
-            <td>${product.manufacturer}</td>
-            <td>${product.model}</td>
-            <td>${product.price}</td>
-            <td>${product.color}</td>
-        </tr>
-        </tbody>
-    </c:forEach>
-</table>--%>
-
-
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
